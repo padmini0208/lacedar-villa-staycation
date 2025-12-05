@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
-const Header = () => {
+interface HeaderProps {
+  onBackToStaycation?: () => void;
+}
+
+const Header = ({ onBackToStaycation }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -33,21 +37,35 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-3">
-          <img src={logo} alt="La Cedar Villa" className="h-12 w-auto" />
-          <div className="hidden sm:block">
-            <h1 className={`font-display text-lg font-semibold leading-tight transition-colors ${
-              isScrolled ? "text-foreground" : "text-snow"
-            }`}>
-              La Cedar Villa
-            </h1>
-            <p className={`text-xs tracking-wider transition-colors ${
-              isScrolled ? "text-muted-foreground" : "text-snow/80"
-            }`}>
-              by Staycation
-            </p>
-          </div>
-        </a>
+        {/* Back button and Logo */}
+        <div className="flex items-center gap-3">
+          {onBackToStaycation && (
+            <button
+              onClick={onBackToStaycation}
+              className={`p-2 rounded-full transition-colors ${
+                isScrolled ? "hover:bg-muted text-foreground" : "hover:bg-snow/20 text-snow"
+              }`}
+              aria-label="Back to Staycation"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+          )}
+          <a href="#home" className="flex items-center gap-3">
+            <img src={logo} alt="La Cedar Villa" className="h-12 w-auto" />
+            <div className="hidden sm:block">
+              <h1 className={`font-display text-lg font-semibold leading-tight transition-colors ${
+                isScrolled ? "text-foreground" : "text-snow"
+              }`}>
+                La Cedar Villa
+              </h1>
+              <p className={`text-xs tracking-wider transition-colors ${
+                isScrolled ? "text-muted-foreground" : "text-snow/80"
+              }`}>
+                by Staycation
+              </p>
+            </div>
+          </a>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-8">
