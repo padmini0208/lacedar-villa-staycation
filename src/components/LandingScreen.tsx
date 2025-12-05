@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronDown, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import staycationHero from "@/assets/staycation-hero.png";
+import heroImage from "@/assets/hero-mountains.jpg";
 
 interface LandingScreenProps {
   onEnter: () => void;
@@ -34,18 +34,27 @@ const LandingScreen = ({ onEnter }: LandingScreenProps) => {
   return (
     <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-snow overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0">
         <img
-          src={staycationHero}
-          alt="Staycation - La Cedar Villa"
-          className="w-full h-full object-contain md:object-cover"
+          src={heroImage}
+          alt="Mountain landscape"
+          className="w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-foreground/10 to-foreground/50" />
       </div>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-snow/20 via-transparent to-snow/40" />
-
       {/* Content */}
+      <div className="relative z-10 flex flex-col items-center text-center px-4">
+        {/* Staycation Branding */}
+        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-snow font-bold tracking-[0.15em] mb-4 animate-fade-in">
+          STAYCATION
+        </h1>
+        <p className="font-display text-lg md:text-xl lg:text-2xl text-snow/90 tracking-[0.2em] uppercase mb-12 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          Your Best Escape is Already Home
+        </p>
+      </div>
+
+      {/* Location Selector at Bottom */}
       <div className="relative z-10 flex flex-col items-center text-center px-4 mt-auto pb-8 md:pb-12">
         {/* Location Selector */}
         <div className="relative w-full max-w-sm">
