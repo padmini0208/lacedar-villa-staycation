@@ -43,7 +43,7 @@ const LandingScreen = ({ onEnter }: LandingScreenProps) => {
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-foreground/10 to-foreground/50" />
       </div>
 
-      {/* Content */}
+      {/* Centered Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-4">
         {/* Staycation Branding */}
         <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-snow font-bold tracking-[0.15em] mb-4 animate-fade-in">
@@ -52,15 +52,12 @@ const LandingScreen = ({ onEnter }: LandingScreenProps) => {
         <p className="font-display text-lg md:text-xl lg:text-2xl text-snow/90 tracking-[0.2em] uppercase mb-12 animate-fade-in" style={{ animationDelay: "0.2s" }}>
           Your Best Escape is Already Home
         </p>
-      </div>
 
-      {/* Location Selector at Bottom */}
-      <div className="relative z-10 flex flex-col items-center text-center px-4 mt-auto pb-8 md:pb-12">
         {/* Location Selector */}
-        <div className="relative w-full max-w-sm">
+        <div className="relative w-full max-w-sm animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <button
             onClick={() => setLocationOpen(!locationOpen)}
-            className="w-full flex items-center justify-between gap-3 px-6 py-4 bg-snow/90 backdrop-blur-sm border border-cedar/20 rounded-lg shadow-soft hover:shadow-elevated transition-all duration-300 group"
+            className="w-full flex items-center justify-between gap-3 px-6 py-4 bg-snow border border-cedar/20 rounded-lg shadow-soft hover:shadow-elevated transition-all duration-300 group"
           >
             <div className="flex items-center gap-3">
               <MapPin className="w-5 h-5 text-cedar" />
@@ -73,7 +70,7 @@ const LandingScreen = ({ onEnter }: LandingScreenProps) => {
 
           {/* Dropdown */}
           {locationOpen && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-snow/95 backdrop-blur-md border border-cedar/20 rounded-lg shadow-elevated overflow-hidden animate-fade-in z-20">
+            <div className="absolute top-full left-0 right-0 mt-2 bg-snow border border-cedar/20 rounded-lg shadow-elevated overflow-hidden animate-fade-in z-50">
               {locations.map((location) => (
                 <div key={location.name}>
                   <button
@@ -88,7 +85,7 @@ const LandingScreen = ({ onEnter }: LandingScreenProps) => {
                   
                   {/* Properties sub-menu */}
                   {selectedLocation === location.name && (
-                    <div className="border-t border-cedar/10">
+                    <div className="border-t border-cedar/10 bg-snow">
                       {location.properties.map((property) => (
                         <button
                           key={property}
@@ -109,7 +106,7 @@ const LandingScreen = ({ onEnter }: LandingScreenProps) => {
         {/* Or explore button */}
         <Button 
           variant="ghost" 
-          className="mt-4 text-mountain hover:text-cedar font-body"
+          className="mt-4 text-snow/80 hover:text-snow font-body"
           onClick={onEnter}
         >
           Explore All Properties

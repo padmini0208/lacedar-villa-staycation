@@ -12,13 +12,18 @@ import LandingScreen from "@/components/LandingScreen";
 const Index = () => {
   const [showLanding, setShowLanding] = useState(true);
 
+  const handleBackToStaycation = () => {
+    setShowLanding(true);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <>
       {showLanding && (
         <LandingScreen onEnter={() => setShowLanding(false)} />
       )}
       <div className={`min-h-screen ${showLanding ? "opacity-0" : "opacity-100"} transition-opacity duration-500`}>
-        <Header />
+        <Header onBackToStaycation={handleBackToStaycation} />
         <main>
           <HeroSection />
           <AboutSection />
