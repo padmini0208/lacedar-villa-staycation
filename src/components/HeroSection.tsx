@@ -21,11 +21,11 @@ const HeroSection = () => {
           <p className="text-snow/90 text-sm md:text-base tracking-[0.3em] uppercase mb-6 animate-fade-in font-body">
             Welcome to
           </p>
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-snow font-bold mb-6 animate-fade-in-up leading-tight">
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-snow font-bold mb-4 animate-fade-in-up leading-tight tracking-wide">
             La Cedar Villa
           </h1>
-          <p className="text-snow/80 text-lg md:text-xl tracking-wide mb-2 animate-fade-in-up font-display italic" style={{ animationDelay: "0.2s" }}>
-            by Staycation
+          <p className="text-snow font-display text-2xl md:text-3xl lg:text-4xl tracking-[0.15em] mb-2 animate-fade-in-up font-semibold" style={{ animationDelay: "0.2s" }}>
+            BY STAYCATION
           </p>
           <div className="w-24 h-0.5 bg-gold mx-auto my-8 animate-scale-in" style={{ animationDelay: "0.3s" }} />
           <p className="text-snow/90 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up font-body" style={{ animationDelay: "0.4s" }}>
