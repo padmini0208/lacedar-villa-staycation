@@ -2,7 +2,7 @@ import { Users, Bed, Bath, Utensils } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import bedroom1 from "@/assets/bedroom-1.jpg";
 import bedroom2 from "@/assets/bedroom-2.jpg";
-import livingRoom1 from "@/assets/living-room-1.jpg";
+import gallery1 from "@/assets/gallery-1.jpg";
 
 const villas = [
   {
@@ -32,7 +32,7 @@ const villas = [
     floor: "3rd Floor Villa",
     type: "4 BHK",
     description: "Premium top floor villa with 4 luxurious bedrooms, wraparound terrace, and unobstructed 360° views of the majestic mountains.",
-    image: livingRoom1,
+    image: gallery1,
     capacity: "8-10 Guests",
     bedrooms: "4 Bedrooms",
     bath: "4 Attached Baths",
