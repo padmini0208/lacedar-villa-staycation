@@ -27,8 +27,8 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-display text-lg font-semibold text-foreground mb-1">Location</h3>
                   <p className="text-muted-foreground">
-                    Kullu - Naggar - Manali Road<br />
-                    Manali, Himachal Pradesh 175136, India
+                    Village Dhamsu, PO, Teh Manali<br />
+                    Sajla, Manali, Himachal Pradesh 175143
                   </p>
                 </div>
               </div>
@@ -40,8 +40,8 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-display text-lg font-semibold text-foreground mb-1">Phone</h3>
                   <p className="text-muted-foreground">
-                    +91 98765 43210<br />
-                    +91 98765 43211
+                    +91 9582762742<br />
+                    +91 8076760431
                   </p>
                 </div>
               </div>
@@ -53,8 +53,7 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-display text-lg font-semibold text-foreground mb-1">Email</h3>
                   <p className="text-muted-foreground">
-                    bookings@lacedarvilla.com<br />
-                    info@lacedarvilla.com
+                    bookings@staycationholidays.in
                   </p>
                 </div>
               </div>
@@ -66,7 +65,7 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-display text-lg font-semibold text-foreground mb-1">Check-in / Check-out</h3>
                   <p className="text-muted-foreground">
-                    Check-in: 2:00 PM<br />
+                    Check-in: 1:00 PM<br />
                     Check-out: 11:00 AM
                   </p>
                 </div>
