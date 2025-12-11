@@ -1,8 +1,4 @@
 import { useState } from "react";
-import heroImage from "@/assets/hero-mountains.jpg";
-import interiorImage from "@/assets/villa-interior.jpg";
-import bedroomImage from "@/assets/bedroom.jpg";
-import terraceImage from "@/assets/terrace-view.jpg";
 import bedroom1 from "@/assets/bedroom-1.jpg";
 import bedroom2 from "@/assets/bedroom-2.jpg";
 import bedroom3 from "@/assets/bedroom-3.jpg";
@@ -12,6 +8,16 @@ import livingRoom2 from "@/assets/living-room-2.jpg";
 import kitchen1 from "@/assets/kitchen-1.jpg";
 import kitchen2 from "@/assets/kitchen-2.jpg";
 import entrance from "@/assets/entrance.jpg";
+import gallery1 from "@/assets/gallery-1.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
+import gallery6 from "@/assets/gallery-6.jpg";
+import gallery7 from "@/assets/gallery-7.jpg";
+import gallery8 from "@/assets/gallery-8.jpg";
+import gallery9 from "@/assets/gallery-9.jpg";
+import gallery10 from "@/assets/gallery-10.jpg";
 
 const galleryImages = [
   { src: bedroom1, alt: "Mountain view bedroom with balcony", category: "Bedroom" },
@@ -23,8 +29,16 @@ const galleryImages = [
   { src: kitchen1, alt: "Modern kitchen with bar counter", category: "Kitchen" },
   { src: kitchen2, alt: "Stylish kitchen with pendant lights", category: "Kitchen" },
   { src: entrance, alt: "Grand entrance with wooden doors", category: "Entrance" },
-  { src: heroImage, alt: "Panoramic mountain view", category: "Views" },
-  { src: terraceImage, alt: "Scenic terrace with valley views", category: "Outdoor" },
+  { src: gallery1, alt: "Villa exterior view", category: "Exterior" },
+  { src: gallery2, alt: "Scenic mountain landscape", category: "Views" },
+  { src: gallery3, alt: "Beautiful valley view", category: "Views" },
+  { src: gallery4, alt: "Villa amenities", category: "Amenities" },
+  { src: gallery5, alt: "Outdoor seating area", category: "Outdoor" },
+  { src: gallery6, alt: "Garden area", category: "Outdoor" },
+  { src: gallery7, alt: "Terrace with mountain view", category: "Terrace" },
+  { src: gallery8, alt: "Balcony view", category: "Views" },
+  { src: gallery9, alt: "Interior details", category: "Interior" },
+  { src: gallery10, alt: "Villa surroundings", category: "Exterior" },
 ];
 
 const GallerySection = () => {
