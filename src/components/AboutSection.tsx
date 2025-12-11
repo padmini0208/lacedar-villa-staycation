@@ -1,5 +1,5 @@
 import { TreePine, Mountain, Home } from "lucide-react";
-import interiorImage from "@/assets/villa-interior.jpg";
+import familyImage from "@/assets/family-terrace.jpg";
 
 const AboutSection = () => {
   return (
@@ -10,8 +10,8 @@ const AboutSection = () => {
           <div className="relative animate-slide-in-left">
             <div className="relative rounded-2xl overflow-hidden shadow-elevated">
               <img
-                src={interiorImage}
-                alt="Luxurious interior of La Cedar Villa with mountain views"
+                src={familyImage}
+                alt="Family enjoying the terrace view at La Cedar Villa"
                 className="w-full h-[400px] lg:h-[500px] object-cover"
               />
             </div>
