@@ -1,7 +1,8 @@
 import { Users, Bed, Bath, Utensils } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import bedroomImage from "@/assets/bedroom.jpg";
-import terraceImage from "@/assets/terrace-view.jpg";
+import bedroom1 from "@/assets/bedroom-1.jpg";
+import bedroom2 from "@/assets/bedroom-2.jpg";
+import livingRoom1 from "@/assets/living-room-1.jpg";
 
 const villas = [
   {
@@ -9,7 +10,7 @@ const villas = [
     floor: "1st Floor Villa",
     type: "3 BHK",
     description: "Elegant ground floor villa with easy access, featuring 3 spacious bedrooms with panoramic Himalayan views and modern amenities.",
-    image: bedroomImage,
+    image: bedroom1,
     capacity: "6-8 Guests",
     bedrooms: "3 Bedrooms",
     bath: "3 Attached Baths",
@@ -20,7 +21,7 @@ const villas = [
     floor: "2nd Floor Villa",
     type: "3 BHK",
     description: "Mid-level villa offering stunning valley views, 3 comfortable bedrooms, and a private balcony perfect for morning tea.",
-    image: terraceImage,
+    image: bedroom2,
     capacity: "6-8 Guests",
     bedrooms: "3 Bedrooms",
     bath: "3 Attached Baths",
@@ -31,7 +32,7 @@ const villas = [
     floor: "3rd Floor Villa",
     type: "4 BHK",
     description: "Premium top floor villa with 4 luxurious bedrooms, wraparound terrace, and unobstructed 360° views of the majestic mountains.",
-    image: bedroomImage,
+    image: livingRoom1,
     capacity: "8-10 Guests",
     bedrooms: "4 Bedrooms",
     bath: "4 Attached Baths",

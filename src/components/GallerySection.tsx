@@ -3,11 +3,27 @@ import heroImage from "@/assets/hero-mountains.jpg";
 import interiorImage from "@/assets/villa-interior.jpg";
 import bedroomImage from "@/assets/bedroom.jpg";
 import terraceImage from "@/assets/terrace-view.jpg";
+import bedroom1 from "@/assets/bedroom-1.jpg";
+import bedroom2 from "@/assets/bedroom-2.jpg";
+import bedroom3 from "@/assets/bedroom-3.jpg";
+import bedroom4 from "@/assets/bedroom-4.jpg";
+import livingRoom1 from "@/assets/living-room-1.jpg";
+import livingRoom2 from "@/assets/living-room-2.jpg";
+import kitchen1 from "@/assets/kitchen-1.jpg";
+import kitchen2 from "@/assets/kitchen-2.jpg";
+import entrance from "@/assets/entrance.jpg";
 
 const galleryImages = [
-  { src: heroImage, alt: "Panoramic mountain view from La Cedar Villa", category: "Views" },
-  { src: interiorImage, alt: "Luxurious living room interior", category: "Interior" },
-  { src: bedroomImage, alt: "Comfortable bedroom with mountain view", category: "Rooms" },
+  { src: bedroom1, alt: "Mountain view bedroom with balcony", category: "Bedroom" },
+  { src: bedroom2, alt: "Cozy bedroom with wooden ceiling", category: "Bedroom" },
+  { src: bedroom3, alt: "Bedroom with forest view", category: "Bedroom" },
+  { src: bedroom4, alt: "Bright bedroom with sitting area", category: "Bedroom" },
+  { src: livingRoom1, alt: "Luxurious living room with red sofas", category: "Living" },
+  { src: livingRoom2, alt: "Elegant living space with decor", category: "Living" },
+  { src: kitchen1, alt: "Modern kitchen with bar counter", category: "Kitchen" },
+  { src: kitchen2, alt: "Stylish kitchen with pendant lights", category: "Kitchen" },
+  { src: entrance, alt: "Grand entrance with wooden doors", category: "Entrance" },
+  { src: heroImage, alt: "Panoramic mountain view", category: "Views" },
   { src: terraceImage, alt: "Scenic terrace with valley views", category: "Outdoor" },
 ];
 
@@ -31,7 +47,7 @@ const GallerySection = () => {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
           {galleryImages.map((image, index) => (
             <div
               key={index}
