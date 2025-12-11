@@ -25,7 +25,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-2 text-snow/70">
               <MapPin className="w-4 h-4 text-gold" />
-              <span>Kullu - Naggar - Manali Road, Manali, HP 175136</span>
+              <span>Village Dhamsu, Sajla, Manali, HP 175143</span>
             </div>
           </div>
 
@@ -52,11 +52,15 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-gold" />
-                <span className="text-snow/70">+91 98765 43210</span>
+                <span className="text-snow/70">+91 9582762742</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-gold" />
+                <span className="text-snow/70">+91 8076760431</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-gold" />
-                <span className="text-snow/70">bookings@lacedarvilla.com</span>
+                <span className="text-snow/70">bookings@staycationholidays.in</span>
               </li>
             </ul>
           </div>
