@@ -28,7 +28,7 @@ const HeroSection = () => {
             BY STAYCATION
           </p>
           <div className="w-24 h-0.5 bg-gold mx-auto my-8 animate-scale-in" style={{ animationDelay: "0.3s" }} />
-          <p className="text-snow/90 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up font-body" style={{ animationDelay: "0.4s" }}>
+          <p className="text-snow text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up font-body bg-foreground/80 px-6 py-4 rounded-lg backdrop-blur-sm" style={{ animationDelay: "0.4s" }}>
             Experience luxury amidst the majestic Himalayas. A serene retreat nestled in the heart of Manali, 
             surrounded by towering cedar trees and breathtaking mountain views.
           </p>
