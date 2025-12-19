@@ -8,6 +8,11 @@ import gallery6 from "@/assets/gallery-new-6.png";
 import gallery7 from "@/assets/gallery-new-7.png";
 import gallery8 from "@/assets/gallery-new-8.png";
 import gallery9 from "@/assets/gallery-new-9.png";
+import gallery10 from "@/assets/gallery-new-10.png";
+import gallery11 from "@/assets/gallery-new-11.png";
+import gallery12 from "@/assets/gallery-new-12.png";
+import gallery13 from "@/assets/gallery-new-13.png";
+import gallery14 from "@/assets/gallery-new-14.png";
 
 const galleryImages = [
   { src: gallery1, alt: "Bedroom with forest and mountain view", category: "Bedroom" },
@@ -19,6 +24,11 @@ const galleryImages = [
   { src: gallery7, alt: "Jungle view bedroom", category: "Bedroom" },
   { src: gallery8, alt: "Jungle view room with attached bathroom", category: "Bedroom" },
   { src: gallery9, alt: "Party zone with grass decor", category: "Party Zone" },
+  { src: gallery10, alt: "Luxurious living area with orange sofas", category: "Living" },
+  { src: gallery11, alt: "Living room with elegant decor", category: "Living" },
+  { src: gallery12, alt: "Modern kitchen with bar counter", category: "Kitchen" },
+  { src: gallery13, alt: "Outdoor terrace with seating", category: "Terrace" },
+  { src: gallery14, alt: "Decorated entrance with floral wall", category: "Entrance" },
 ];
 
 const GallerySection = () => {
