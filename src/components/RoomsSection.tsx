@@ -5,18 +5,36 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import bedroom1 from "@/assets/bedroom-1.jpg";
 import bedroom2 from "@/assets/bedroom-2.jpg";
 import gallery1 from "@/assets/gallery-1.jpg";
-import gallery10 from "@/assets/gallery-new-10.png";
-import gallery11 from "@/assets/gallery-new-11.png";
-import gallery12 from "@/assets/gallery-new-12.png";
-import gallery13 from "@/assets/gallery-new-13.png";
-import gallery14 from "@/assets/gallery-new-14.png";
+import galleryNew1 from "@/assets/gallery-new-1.png";
+import galleryNew2 from "@/assets/gallery-new-2.png";
+import galleryNew3 from "@/assets/gallery-new-3.png";
+import galleryNew4 from "@/assets/gallery-new-4.png";
+import galleryNew5 from "@/assets/gallery-new-5.png";
+import galleryNew6 from "@/assets/gallery-new-6.png";
+import galleryNew7 from "@/assets/gallery-new-7.png";
+import galleryNew8 from "@/assets/gallery-new-8.png";
+import galleryNew9 from "@/assets/gallery-new-9.png";
+import galleryNew10 from "@/assets/gallery-new-10.png";
+import galleryNew11 from "@/assets/gallery-new-11.png";
+import galleryNew12 from "@/assets/gallery-new-12.png";
+import galleryNew13 from "@/assets/gallery-new-13.png";
+import galleryNew14 from "@/assets/gallery-new-14.png";
 
 const dhauladharGallery = [
-  { src: gallery10, alt: "Living area with orange sofas" },
-  { src: gallery11, alt: "Living room with elegant decor" },
-  { src: gallery12, alt: "Modern kitchen with bar counter" },
-  { src: gallery13, alt: "Terrace with seating area" },
-  { src: gallery14, alt: "Decorated entrance" },
+  { src: galleryNew1, alt: "Bedroom with forest and mountain view" },
+  { src: galleryNew2, alt: "Room seating area with mountain view" },
+  { src: galleryNew3, alt: "Jungle view and mountain view room" },
+  { src: galleryNew4, alt: "Mountain view bedroom" },
+  { src: galleryNew5, alt: "Mountain view room with TV unit" },
+  { src: galleryNew6, alt: "Balcony with jungle view" },
+  { src: galleryNew7, alt: "Jungle view bedroom" },
+  { src: galleryNew8, alt: "Jungle view room with attached bathroom" },
+  { src: galleryNew9, alt: "Party zone with grass decor" },
+  { src: galleryNew10, alt: "Living area with orange sofas" },
+  { src: galleryNew11, alt: "Living room with elegant decor" },
+  { src: galleryNew12, alt: "Modern kitchen with bar counter" },
+  { src: galleryNew13, alt: "Terrace with seating area" },
+  { src: galleryNew14, alt: "Decorated entrance" },
 ];
 
 const villas = [
