@@ -30,6 +30,14 @@ import pirPanjalAttic22 from "@/assets/pir-panjal-attic-2-2.png";
 import pirPanjalRoom21 from "@/assets/pir-panjal-room-2-1.png";
 import pirPanjalRoom22 from "@/assets/pir-panjal-room-2-2.png";
 import pirPanjalRoom1View from "@/assets/pir-panjal-room-1-view.png";
+import pirPanjalRoom13 from "@/assets/pir-panjal-room-1-3.png";
+import pirPanjalRoom12 from "@/assets/pir-panjal-room-1-2.png";
+import pirPanjalRoom11 from "@/assets/pir-panjal-room-1-1.png";
+import pirPanjalKitchen from "@/assets/pir-panjal-kitchen.png";
+import pirPanjalBhukari1 from "@/assets/pir-panjal-bhukari-1.png";
+import pirPanjalBhukari2 from "@/assets/pir-panjal-bhukari-2.png";
+import pirPanjalLiving1 from "@/assets/pir-panjal-living-1.png";
+import pirPanjalLiving2 from "@/assets/pir-panjal-living-2.png";
 
 const dhauladharGallery = [
   { src: galleryNew1, alt: "Bedroom with forest and mountain view" },
@@ -49,16 +57,24 @@ const dhauladharGallery = [
 ];
 
 const pirPanjalGallery = [
-  { src: pirPanjalTerrace1, alt: "4BHK Villa terrace view" },
-  { src: pirPanjalTerrace2, alt: "Terrace seating area" },
-  { src: pirPanjalTerrace3, alt: "Terrace with mountain view" },
+  { src: pirPanjalRoom11, alt: "Room 1 with scenic view" },
+  { src: pirPanjalRoom12, alt: "Room 1 alternate view" },
+  { src: pirPanjalRoom13, alt: "Room 1 bedroom" },
+  { src: pirPanjalRoom21, alt: "Room 2 view" },
+  { src: pirPanjalRoom22, alt: "Room 2 alternate view" },
+  { src: pirPanjalRoom1View, alt: "Room with mountain view" },
   { src: pirPanjalAttic1, alt: "Attic room 1" },
   { src: pirPanjalAttic12, alt: "Attic room 1 alternate view" },
   { src: pirPanjalAttic21, alt: "Attic room 2" },
   { src: pirPanjalAttic22, alt: "Attic room 2 alternate view" },
-  { src: pirPanjalRoom21, alt: "Room 2 view" },
-  { src: pirPanjalRoom22, alt: "Room 2 alternate view" },
-  { src: pirPanjalRoom1View, alt: "Room 1 with scenic view" },
+  { src: pirPanjalLiving1, alt: "Living room with bhukari" },
+  { src: pirPanjalLiving2, alt: "Living room with mountain view" },
+  { src: pirPanjalBhukari1, alt: "Bhukari area" },
+  { src: pirPanjalBhukari2, alt: "Bhukari living space" },
+  { src: pirPanjalKitchen, alt: "Modern kitchen" },
+  { src: pirPanjalTerrace1, alt: "4BHK Villa terrace view" },
+  { src: pirPanjalTerrace2, alt: "Terrace seating area" },
+  { src: pirPanjalTerrace3, alt: "Terrace with mountain view" },
 ];
 
 const villas = [
