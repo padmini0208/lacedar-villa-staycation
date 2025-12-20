@@ -229,8 +229,8 @@ const RoomsSection = () => {
                   ))}
                 </div>
 
-                <Button variant="cedar" className="w-full">
-                  Check Availability
+                <Button variant="cedar" className="w-full" asChild>
+                  <a href="tel:+919582762742">Reserve Your Stay</a>
                 </Button>
               </div>
             </div>
@@ -361,8 +361,8 @@ const RoomsSection = () => {
               </div>
             </div>
 
-            <Button variant="cedar" className="w-full" size="lg">
-              Book {activeVilla} Villa
+            <Button variant="cedar" className="w-full" size="lg" asChild>
+              <a href="tel:+919582762742">Reserve Your Stay</a>
             </Button>
           </div>
         </DialogContent>

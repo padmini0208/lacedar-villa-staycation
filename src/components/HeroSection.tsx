@@ -33,8 +33,8 @@ const HeroSection = () => {
             surrounded by towering cedar trees and breathtaking mountain views.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-            <Button variant="hero" size="xl">
-              Reserve Your Stay
+            <Button variant="hero" size="xl" asChild>
+              <a href="tel:+919582762742">Reserve Your Stay</a>
             </Button>
             <Button variant="heroOutline" size="xl">
               Explore Villa
