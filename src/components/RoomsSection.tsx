@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Users, Bed, Bath, Utensils, Mountain, TreePine, ChefHat, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Users, Bed, Bath, Utensils, Mountain, TreePine, ChefHat, X, ChevronLeft, ChevronRight, Sofa } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import bedroom1 from "@/assets/bedroom-1.jpg";
@@ -19,6 +19,17 @@ import galleryNew11 from "@/assets/gallery-new-11.png";
 import galleryNew12 from "@/assets/gallery-new-12.png";
 import galleryNew13 from "@/assets/gallery-new-13.png";
 import galleryNew14 from "@/assets/gallery-new-14.png";
+// Pir Panjal images
+import pirPanjalTerrace1 from "@/assets/pir-panjal-terrace-1.png";
+import pirPanjalTerrace2 from "@/assets/pir-panjal-terrace-2.png";
+import pirPanjalTerrace3 from "@/assets/pir-panjal-terrace-3.png";
+import pirPanjalAttic1 from "@/assets/pir-panjal-attic-1.png";
+import pirPanjalAttic12 from "@/assets/pir-panjal-attic-1-2.png";
+import pirPanjalAttic21 from "@/assets/pir-panjal-attic-2-1.png";
+import pirPanjalAttic22 from "@/assets/pir-panjal-attic-2-2.png";
+import pirPanjalRoom21 from "@/assets/pir-panjal-room-2-1.png";
+import pirPanjalRoom22 from "@/assets/pir-panjal-room-2-2.png";
+import pirPanjalRoom1View from "@/assets/pir-panjal-room-1-view.png";
 
 const dhauladharGallery = [
   { src: galleryNew1, alt: "Bedroom with forest and mountain view" },
@@ -35,6 +46,19 @@ const dhauladharGallery = [
   { src: galleryNew12, alt: "Modern kitchen with bar counter" },
   { src: galleryNew13, alt: "Terrace with seating area" },
   { src: galleryNew14, alt: "Decorated entrance" },
+];
+
+const pirPanjalGallery = [
+  { src: pirPanjalTerrace1, alt: "4BHK Villa terrace view" },
+  { src: pirPanjalTerrace2, alt: "Terrace seating area" },
+  { src: pirPanjalTerrace3, alt: "Terrace with mountain view" },
+  { src: pirPanjalAttic1, alt: "Attic room 1" },
+  { src: pirPanjalAttic12, alt: "Attic room 1 alternate view" },
+  { src: pirPanjalAttic21, alt: "Attic room 2" },
+  { src: pirPanjalAttic22, alt: "Attic room 2 alternate view" },
+  { src: pirPanjalRoom21, alt: "Room 2 view" },
+  { src: pirPanjalRoom22, alt: "Room 2 alternate view" },
+  { src: pirPanjalRoom1View, alt: "Room 1 with scenic view" },
 ];
 
 const villas = [
@@ -72,27 +96,37 @@ const villas = [
     bedrooms: "4 Bedrooms",
     bath: "4 Attached Baths",
     features: ["360° Views", "Wraparound Terrace", "Premium Interiors", "Kitchen"],
-    clickable: false,
+    clickable: true,
   },
 ];
 
 const RoomsSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [activeVilla, setActiveVilla] = useState<string | null>(null);
 
   const handleVillaClick = (villaName: string) => {
-    if (villaName === "Dhauladhar") {
+    if (villaName === "Dhauladhar" || villaName === "Pir Panjal") {
+      setActiveVilla(villaName);
       setIsModalOpen(true);
       setCurrentImageIndex(0);
     }
   };
 
+  const getActiveGallery = () => {
+    if (activeVilla === "Dhauladhar") return dhauladharGallery;
+    if (activeVilla === "Pir Panjal") return pirPanjalGallery;
+    return [];
+  };
+
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % dhauladharGallery.length);
+    const gallery = getActiveGallery();
+    setCurrentImageIndex((prev) => (prev + 1) % gallery.length);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + dhauladharGallery.length) % dhauladharGallery.length);
+    const gallery = getActiveGallery();
+    setCurrentImageIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
   };
 
   return (
@@ -186,24 +220,28 @@ const RoomsSection = () => {
         </div>
       </div>
 
-      {/* Dhauladhar Modal */}
+      {/* Villa Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-background border-border">
           <DialogHeader>
             <DialogTitle className="font-display text-2xl md:text-3xl text-foreground">
-              Dhauladhar Villa
+              {activeVilla} Villa
             </DialogTitle>
-            <p className="text-muted-foreground">2nd Floor • 3 BHK Premium Villa</p>
+            <p className="text-muted-foreground">
+              {activeVilla === "Dhauladhar" ? "2nd Floor • 3 BHK Premium Villa" : "3rd Floor • 4 BHK Premium Villa"}
+            </p>
           </DialogHeader>
 
           {/* Image Gallery */}
           <div className="relative mt-4">
             <div className="relative h-64 md:h-80 rounded-xl overflow-hidden">
-              <img
-                src={dhauladharGallery[currentImageIndex].src}
-                alt={dhauladharGallery[currentImageIndex].alt}
-                className="w-full h-full object-cover"
-              />
+              {getActiveGallery().length > 0 && (
+                <img
+                  src={getActiveGallery()[currentImageIndex]?.src}
+                  alt={getActiveGallery()[currentImageIndex]?.alt}
+                  className="w-full h-full object-cover"
+                />
+              )}
               <button
                 onClick={prevImage}
                 className="absolute left-2 top-1/2 -translate-y-1/2 bg-foreground/50 hover:bg-foreground/70 text-snow p-2 rounded-full transition-colors"
@@ -220,7 +258,7 @@ const RoomsSection = () => {
 
             {/* Thumbnails */}
             <div className="flex gap-2 mt-4 overflow-x-auto pb-2">
-              {dhauladharGallery.map((img, idx) => (
+              {getActiveGallery().map((img, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentImageIndex(idx)}
@@ -237,21 +275,23 @@ const RoomsSection = () => {
           {/* Villa Details */}
           <div className="mt-6 space-y-6">
             <p className="text-muted-foreground leading-relaxed">
-              Experience luxury living at Dhauladhar Villa, our beautifully designed 2nd floor retreat offering breathtaking mountain and jungle views. Perfect for families or groups seeking comfort and tranquility.
+              {activeVilla === "Dhauladhar" 
+                ? "Experience luxury living at Dhauladhar Villa, our beautifully designed 2nd floor retreat offering breathtaking mountain and jungle views. Perfect for families or groups seeking comfort and tranquility."
+                : "Discover the pinnacle of luxury at Pir Panjal Villa, our premium top floor retreat featuring 4 spacious bedrooms, wraparound terrace with 360° views, and an exclusive attic room. Ideal for large families or groups."}
             </p>
 
             {/* Room Configuration */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-secondary/50 p-4 rounded-xl text-center">
                 <Bed className="w-6 h-6 text-cedar mx-auto mb-2" />
-                <p className="text-foreground font-semibold">3 Bedrooms</p>
+                <p className="text-foreground font-semibold">{activeVilla === "Dhauladhar" ? "3 Bedrooms" : "4 Bedrooms"}</p>
               </div>
               <div className="bg-secondary/50 p-4 rounded-xl text-center">
                 <Bath className="w-6 h-6 text-cedar mx-auto mb-2" />
-                <p className="text-foreground font-semibold">3 Bathrooms</p>
+                <p className="text-foreground font-semibold">{activeVilla === "Dhauladhar" ? "3 Bathrooms" : "4 Bathrooms"}</p>
               </div>
               <div className="bg-secondary/50 p-4 rounded-xl text-center">
-                <Users className="w-6 h-6 text-cedar mx-auto mb-2" />
+                <Sofa className="w-6 h-6 text-cedar mx-auto mb-2" />
                 <p className="text-foreground font-semibold">1 Living Area</p>
               </div>
               <div className="bg-secondary/50 p-4 rounded-xl text-center">
@@ -287,8 +327,8 @@ const RoomsSection = () => {
                     <Users className="w-5 h-5 text-cedar" />
                   </div>
                   <div>
-                    <p className="text-foreground font-medium">Terrace with Seating</p>
-                    <p className="text-muted-foreground text-sm">Private outdoor area perfect for relaxation</p>
+                    <p className="text-foreground font-medium">{activeVilla === "Pir Panjal" ? "Wraparound Terrace" : "Terrace with Seating"}</p>
+                    <p className="text-muted-foreground text-sm">{activeVilla === "Pir Panjal" ? "360° views with spacious outdoor seating" : "Private outdoor area perfect for relaxation"}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -304,7 +344,7 @@ const RoomsSection = () => {
             </div>
 
             <Button variant="cedar" className="w-full" size="lg">
-              Book Dhauladhar Villa
+              Book {activeVilla} Villa
             </Button>
           </div>
         </DialogContent>
