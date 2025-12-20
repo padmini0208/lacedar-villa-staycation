@@ -38,6 +38,7 @@ import pirPanjalBhukari1 from "@/assets/pir-panjal-bhukari-1.png";
 import pirPanjalBhukari2 from "@/assets/pir-panjal-bhukari-2.png";
 import pirPanjalLiving1 from "@/assets/pir-panjal-living-1.png";
 import pirPanjalLiving2 from "@/assets/pir-panjal-living-2.png";
+import pirPanjalEntrance from "@/assets/pir-panjal-entrance.png";
 
 const dhauladharGallery = [
   { src: galleryNew1, alt: "Bedroom with forest and mountain view" },
@@ -75,6 +76,7 @@ const pirPanjalGallery = [
   { src: pirPanjalTerrace1, alt: "4BHK Villa terrace view" },
   { src: pirPanjalTerrace2, alt: "Terrace seating area" },
   { src: pirPanjalTerrace3, alt: "Terrace with mountain view" },
+  { src: pirPanjalEntrance, alt: "Decorated entrance" },
 ];
 
 const villas = [
