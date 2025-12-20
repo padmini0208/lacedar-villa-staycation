@@ -13,6 +13,26 @@ import gallery11 from "@/assets/gallery-new-11.png";
 import gallery12 from "@/assets/gallery-new-12.png";
 import gallery13 from "@/assets/gallery-new-13.png";
 import gallery14 from "@/assets/gallery-new-14.png";
+// Pir Panjal images
+import pirPanjalRoom11 from "@/assets/pir-panjal-room-1-1.png";
+import pirPanjalRoom12 from "@/assets/pir-panjal-room-1-2.png";
+import pirPanjalRoom13 from "@/assets/pir-panjal-room-1-3.png";
+import pirPanjalRoom21 from "@/assets/pir-panjal-room-2-1.png";
+import pirPanjalRoom22 from "@/assets/pir-panjal-room-2-2.png";
+import pirPanjalRoom1View from "@/assets/pir-panjal-room-1-view.png";
+import pirPanjalAttic1 from "@/assets/pir-panjal-attic-1.png";
+import pirPanjalAttic12 from "@/assets/pir-panjal-attic-1-2.png";
+import pirPanjalAttic21 from "@/assets/pir-panjal-attic-2-1.png";
+import pirPanjalAttic22 from "@/assets/pir-panjal-attic-2-2.png";
+import pirPanjalLiving1 from "@/assets/pir-panjal-living-1.png";
+import pirPanjalLiving2 from "@/assets/pir-panjal-living-2.png";
+import pirPanjalBhukari1 from "@/assets/pir-panjal-bhukari-1.png";
+import pirPanjalBhukari2 from "@/assets/pir-panjal-bhukari-2.png";
+import pirPanjalKitchen from "@/assets/pir-panjal-kitchen.png";
+import pirPanjalTerrace1 from "@/assets/pir-panjal-terrace-1.png";
+import pirPanjalTerrace2 from "@/assets/pir-panjal-terrace-2.png";
+import pirPanjalTerrace3 from "@/assets/pir-panjal-terrace-3.png";
+import pirPanjalEntrance from "@/assets/pir-panjal-entrance.png";
 
 const galleryImages = [
   { src: gallery1, alt: "Bedroom with forest and mountain view", category: "Bedroom" },
@@ -29,6 +49,26 @@ const galleryImages = [
   { src: gallery12, alt: "Modern kitchen with bar counter", category: "Kitchen" },
   { src: gallery13, alt: "Outdoor terrace with seating", category: "Terrace" },
   { src: gallery14, alt: "Decorated entrance with floral wall", category: "Entrance" },
+  // Pir Panjal Villa photos
+  { src: pirPanjalRoom11, alt: "Pir Panjal Room 1", category: "Pir Panjal" },
+  { src: pirPanjalRoom12, alt: "Pir Panjal Room 1 view", category: "Pir Panjal" },
+  { src: pirPanjalRoom13, alt: "Pir Panjal Bedroom", category: "Pir Panjal" },
+  { src: pirPanjalRoom21, alt: "Pir Panjal Room 2", category: "Pir Panjal" },
+  { src: pirPanjalRoom22, alt: "Pir Panjal Room 2 view", category: "Pir Panjal" },
+  { src: pirPanjalRoom1View, alt: "Pir Panjal mountain view", category: "Pir Panjal" },
+  { src: pirPanjalAttic1, alt: "Pir Panjal Attic 1", category: "Pir Panjal" },
+  { src: pirPanjalAttic12, alt: "Pir Panjal Attic 1 view", category: "Pir Panjal" },
+  { src: pirPanjalAttic21, alt: "Pir Panjal Attic 2", category: "Pir Panjal" },
+  { src: pirPanjalAttic22, alt: "Pir Panjal Attic 2 view", category: "Pir Panjal" },
+  { src: pirPanjalLiving1, alt: "Pir Panjal Living room", category: "Pir Panjal" },
+  { src: pirPanjalLiving2, alt: "Pir Panjal Living area", category: "Pir Panjal" },
+  { src: pirPanjalBhukari1, alt: "Pir Panjal Bhukari", category: "Pir Panjal" },
+  { src: pirPanjalBhukari2, alt: "Pir Panjal Bhukari area", category: "Pir Panjal" },
+  { src: pirPanjalKitchen, alt: "Pir Panjal Kitchen", category: "Pir Panjal" },
+  { src: pirPanjalTerrace1, alt: "Pir Panjal Terrace", category: "Pir Panjal" },
+  { src: pirPanjalTerrace2, alt: "Pir Panjal Terrace view", category: "Pir Panjal" },
+  { src: pirPanjalTerrace3, alt: "Pir Panjal Terrace seating", category: "Pir Panjal" },
+  { src: pirPanjalEntrance, alt: "Pir Panjal Entrance", category: "Pir Panjal" },
 ];
 
 const GallerySection = () => {
