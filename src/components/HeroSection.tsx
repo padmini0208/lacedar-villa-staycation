@@ -34,10 +34,17 @@ const HeroSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
             <Button variant="hero" size="xl" asChild>
-              <a href="tel:+919582762742">Reserve Your Stay</a>
+              <a href="#contact">Book Now</a>
             </Button>
-            <Button variant="heroOutline" size="xl">
-              Explore Villa
+            <Button variant="heroOutline" size="xl" asChild>
+              <a href="#rooms">Explore Villa</a>
+            </Button>
+          </div>
+          <div className="mt-4 animate-fade-in-up" style={{ animationDelay: "0.8s" }}>
+            <Button variant="ghost" size="lg" className="text-snow hover:text-gold hover:bg-snow/10" asChild>
+              <a href="tel:+919582762742" className="flex items-center gap-2">
+                <span>📞</span> Call Now: +91 9582762742
+              </a>
             </Button>
           </div>
         </div>
