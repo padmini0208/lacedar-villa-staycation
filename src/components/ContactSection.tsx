@@ -4,8 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
-// hCaptcha Site Key - Replace with your actual site key from hcaptcha.com
-const HCAPTCHA_SITE_KEY = "10000000-ffff-ffff-ffff-000000000001"; // Test key - replace with real one
+// hCaptcha Site Key - Production key
+const HCAPTCHA_SITE_KEY = "e02ad8fe-0550-460e-95c2-9e7268f0b890";
 
 declare global {
   interface Window {
