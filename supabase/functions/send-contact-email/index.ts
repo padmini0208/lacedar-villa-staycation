@@ -16,6 +16,26 @@ interface ContactFormRequest {
   message: string;
 }
 
+// Rate limiting: Track requests per IP
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const limit = rateLimitMap.get(ip);
+  
+  if (!limit || now > limit.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + 60000 }); // 1 minute window
+    return true;
+  }
+  
+  if (limit.count >= 3) { // Max 3 submissions per minute
+    return false;
+  }
+  
+  limit.count++;
+  return true;
+}
+
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -23,6 +43,16 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Check rate limit
+    const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
+    if (!checkRateLimit(ip)) {
+      console.log(`Rate limit exceeded for IP: ${ip}`);
+      return new Response(
+        JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }),
+        { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
     const { firstName, lastName, email, phone, message }: ContactFormRequest = await req.json();
 
     console.log("Received contact form submission:", { firstName, lastName, email, phone, message });
