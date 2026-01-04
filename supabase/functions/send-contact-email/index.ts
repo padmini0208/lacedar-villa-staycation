@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const HCAPTCHA_SECRET_KEY = Deno.env.get("HCAPTCHA_SECRET_KEY");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -14,6 +15,7 @@ interface ContactFormRequest {
   email: string;
   phone: string;
   message: string;
+  captchaToken: string;
 }
 
 // Rate limiting: Track requests per IP
@@ -36,6 +38,36 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
+// HTML escape function to prevent XSS
+function escapeHtml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// Verify hCaptcha token
+async function verifyCaptcha(token: string): Promise<boolean> {
+  try {
+    const response = await fetch("https://hcaptcha.com/siteverify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `response=${token}&secret=${HCAPTCHA_SECRET_KEY}`,
+    });
+    
+    const data = await response.json();
+    console.log("hCaptcha verification response:", data);
+    return data.success === true;
+  } catch (error) {
+    console.error("hCaptcha verification error:", error);
+    return false;
+  }
+}
+
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -53,13 +85,72 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    const { firstName, lastName, email, phone, message }: ContactFormRequest = await req.json();
+    const { firstName, lastName, email, phone, message, captchaToken }: ContactFormRequest = await req.json();
 
-    console.log("Received contact form submission:", { firstName, lastName, email, phone, message });
+    // Validate required fields
+    if (!firstName || firstName.length > 100) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid first name' }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    if (lastName && lastName.length > 100) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid last name' }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email) || email.length > 255) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid email address' }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    if (phone && phone.length > 20) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid phone number' }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    if (!message || message.length > 5000) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid message' }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // Verify CAPTCHA
+    if (!captchaToken) {
+      return new Response(
+        JSON.stringify({ error: 'Please complete the CAPTCHA verification' }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    const captchaValid = await verifyCaptcha(captchaToken);
+    if (!captchaValid) {
+      console.log("CAPTCHA verification failed");
+      return new Response(
+        JSON.stringify({ error: 'CAPTCHA verification failed. Please try again.' }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    console.log("Received contact form submission:", { firstName, lastName, email, phone });
+
+    // Escape HTML in user inputs before embedding in email
+    const safeFirstName = escapeHtml(firstName);
+    const safeLastName = escapeHtml(lastName || '');
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone || '');
+    const safeMessage = escapeHtml(message);
 
     // Try to send notification email to owner
-    // Note: In testing mode, Resend can only send to the account owner's email
-    // To send to other emails, verify a domain at resend.com/domains
     try {
       const ownerEmailResponse = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -69,18 +160,18 @@ const handler = async (req: Request): Promise<Response> => {
         },
         body: JSON.stringify({
           from: "La Cedar Villa <onboarding@resend.dev>",
-          to: ["pooja.leo1993@gmail.com"], // Using verified email for testing
-          subject: `New Contact Form: ${firstName} ${lastName}`,
+          to: ["pooja.leo1993@gmail.com"],
+          subject: `New Contact Form: ${safeFirstName} ${safeLastName}`,
           html: `
             <h1>New Contact Form Submission</h1>
-            <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Name:</strong> ${safeFirstName} ${safeLastName}</p>
+            <p><strong>Email:</strong> ${safeEmail}</p>
+            <p><strong>Phone:</strong> ${safePhone}</p>
             <h2>Message:</h2>
-            <p>${message}</p>
+            <p>${safeMessage}</p>
             <hr>
             <p><em>This message was sent from the La Cedar Villa website contact form.</em></p>
-            <p><strong>Reply to this customer at:</strong> ${email}</p>
+            <p><strong>Reply to this customer at:</strong> ${safeEmail}</p>
           `,
         }),
       });
@@ -95,7 +186,6 @@ const handler = async (req: Request): Promise<Response> => {
       console.error("Email sending error:", emailError);
     }
 
-    // Return success regardless - the form submission was received
     console.log("Contact form processed successfully for:", firstName, lastName);
     
     return new Response(JSON.stringify({ 

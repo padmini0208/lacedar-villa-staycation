@@ -1,12 +1,33 @@
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+
+// hCaptcha Site Key - Replace with your actual site key from hcaptcha.com
+const HCAPTCHA_SITE_KEY = "10000000-ffff-ffff-ffff-000000000001"; // Test key - replace with real one
+
+declare global {
+  interface Window {
+    hcaptcha: {
+      render: (container: string | HTMLElement, options: {
+        sitekey: string;
+        callback: (token: string) => void;
+        "expired-callback": () => void;
+        "error-callback": () => void;
+      }) => string;
+      reset: (widgetId: string) => void;
+      getResponse: (widgetId: string) => string;
+    };
+  }
+}
 
 const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string>("");
+  const [captchaWidgetId, setCaptchaWidgetId] = useState<string | null>(null);
+  const captchaContainerRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -14,6 +35,46 @@ const ContactSection = () => {
     phone: "",
     message: "",
   });
+
+  // Load hCaptcha script
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://js.hcaptcha.com/1/api.js?render=explicit";
+    script.async = true;
+    script.defer = true;
+    
+    script.onload = () => {
+      if (captchaContainerRef.current && window.hcaptcha) {
+        const widgetId = window.hcaptcha.render(captchaContainerRef.current, {
+          sitekey: HCAPTCHA_SITE_KEY,
+          callback: (token: string) => {
+            setCaptchaToken(token);
+          },
+          "expired-callback": () => {
+            setCaptchaToken("");
+          },
+          "error-callback": () => {
+            setCaptchaToken("");
+            toast({
+              title: "CAPTCHA Error",
+              description: "Please try the CAPTCHA again.",
+              variant: "destructive",
+            });
+          },
+        });
+        setCaptchaWidgetId(widgetId);
+      }
+    };
+    
+    document.head.appendChild(script);
+    
+    return () => {
+      const existingScript = document.querySelector('script[src*="hcaptcha"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, [toast]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -32,11 +93,20 @@ const ContactSection = () => {
       return;
     }
 
+    if (!captchaToken) {
+      toast({
+        title: "Please complete the CAPTCHA",
+        description: "Verify that you're human before submitting.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       const { data, error } = await supabase.functions.invoke("send-contact-email", {
-        body: formData,
+        body: { ...formData, captchaToken },
       });
 
       if (error) {
@@ -55,13 +125,25 @@ const ContactSection = () => {
         phone: "",
         message: "",
       });
+      
+      // Reset CAPTCHA
+      setCaptchaToken("");
+      if (captchaWidgetId && window.hcaptcha) {
+        window.hcaptcha.reset(captchaWidgetId);
+      }
     } catch (error: any) {
       console.error("Error sending message:", error);
       toast({
         title: "Failed to send message",
-        description: "Please try again or contact us directly by phone.",
+        description: error.message || "Please try again or contact us directly by phone.",
         variant: "destructive",
       });
+      
+      // Reset CAPTCHA on error
+      setCaptchaToken("");
+      if (captchaWidgetId && window.hcaptcha) {
+        window.hcaptcha.reset(captchaWidgetId);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -170,6 +252,7 @@ const ContactSection = () => {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleInputChange}
+                    maxLength={100}
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-cedar/50 transition-all"
                     placeholder="John"
                     required
@@ -184,6 +267,7 @@ const ContactSection = () => {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleInputChange}
+                    maxLength={100}
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-cedar/50 transition-all"
                     placeholder="Doe"
                   />
@@ -199,6 +283,7 @@ const ContactSection = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
+                  maxLength={255}
                   className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-cedar/50 transition-all"
                   placeholder="john@example.com"
                   required
@@ -214,6 +299,7 @@ const ContactSection = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
+                  maxLength={20}
                   className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-cedar/50 transition-all"
                   placeholder="+91 98765 43210"
                 />
@@ -228,13 +314,19 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={4}
+                  maxLength={5000}
                   className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-cedar/50 transition-all resize-none"
                   placeholder="Tell us about your stay preferences..."
                   required
                 />
               </div>
 
-              <Button variant="cedar" size="xl" className="w-full" type="submit" disabled={isSubmitting}>
+              {/* hCaptcha Widget */}
+              <div className="flex justify-center">
+                <div ref={captchaContainerRef}></div>
+              </div>
+
+              <Button variant="cedar" size="xl" className="w-full" type="submit" disabled={isSubmitting || !captchaToken}>
                 {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
